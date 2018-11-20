@@ -1,6 +1,8 @@
 /*
 	Main driver for the MapGenerator project. Displays the map to the screen and allows user input for manipulating the map.
 */
+#include "Grid.h"
+
 #include <SFML/Graphics.hpp>
 
 #include <wtypes.h>
@@ -9,8 +11,8 @@
 #include <ratio>
 #include <iostream>
 
-sf::Vector2<int> grid_size = sf::Vector2<int>(21, 21);  // Replace with grid's size later
 sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");
+Grid grid = Grid(sf::Vector2f(64, 32), sf::Vector2f(21, 21), sf::Vector2f(16, 16));
 
 // Vars for map generation speed and timing
 double timer = 0.0;
@@ -34,7 +36,7 @@ void ready() {
 
 /* Draws the current grid to the screen */
 void drawGrid() {
-    sf::Texture tex_wall;
+    /*sf::Texture tex_wall;
     tex_wall.loadFromFile("tiles/wall.png");
 
     sf::Sprite spr_wall;
@@ -43,11 +45,13 @@ void drawGrid() {
     for (int i = 0; i < visible_count; i++) {
         spr_wall.setPosition(sf::Vector2f(16 + 16 * (i % grid_size.x), 16 + 16 * (i / grid_size.x)));
         window.draw(spr_wall);
-    }
+    }*/
+	grid.draw(window);
 }
 
 /* Called once every "game loop" */
 void update(double delta) {
+	/*
     if (visible_count < grid_size.x * grid_size.y) {
         timer += delta;
         if (timer >= interval) {
@@ -57,7 +61,7 @@ void update(double delta) {
     }
     else {
         visible_count = grid_size.x * grid_size.y;
-    }
+    }*/
 
     drawGrid();
 }
