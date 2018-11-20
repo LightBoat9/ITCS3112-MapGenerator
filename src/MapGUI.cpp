@@ -1,7 +1,7 @@
 /*
 	Main driver for the MapGenerator project. Displays the map to the screen and allows user input for manipulating the map.
 */
-#include "Grid.h"
+#include "GridMap.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -12,7 +12,7 @@
 #include <iostream>
 
 sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");
-Grid grid = Grid(sf::Vector2f(64, 32), sf::Vector2f(21, 21), sf::Vector2f(16, 16));
+GridMap grid = GridMap(sf::Vector2f(64, 32), sf::Vector2f(21, 21), sf::Vector2f(16, 16));
 
 // Vars for map generation speed and timing
 double timer = 0.0;
