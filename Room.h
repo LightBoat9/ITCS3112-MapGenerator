@@ -4,16 +4,16 @@
 class Room{
 
     protected:
-    int x; int y;
-    int width; int height;
-    bool** room;
+    int X; int Y;
+    int WIDTH; int HEIGHT;
+    bool** ROOM;
 
     public:
 
     Room()
     {
-        width = height = x = y = 0;
-        room = new bool[0];
+       WIDTH = HEIGHT = X = Y = 0;
+        ROOM = new bool[0];
     }
 
 
@@ -21,28 +21,28 @@ class Room{
 
     void setXCord(int xCor)
     {
-        x = xCor;
+        X = xCor;
     }
     int getXCord()
     {
-        return x;
+        return X;
     }
     void setYCord(int yCor)
     {
-        y = yCor;
+        Y = yCor;
     }
     int getYCord()
     {
-        return y;
+        return Y;
     }
 
     void setRoom(int width, int height)
     {
-        this->width = width; this->height = height;
+        this->WIDTH = width; this->HEIGHT = height;
     }
     bool** getRoom()
     {
-        return room;
+        return ROOM;
     }
 };
 
