@@ -1,17 +1,35 @@
 #include "GridSpace.h"
 
-GridSpace::GridSpace(sf::Vector2f position, sf::Vector2f size) {
+/*
+	Constructor
+
+	@param position the position of this GridSpace
+	@param size the width and height of this GridSpace
+*/
+GridSpace::GridSpace(sf::Vector2f position, sf::Vector2f size) 
+{
 	this->position = position;
 	this->size = size;
 }
 
-void GridSpace::draw(sf::RenderWindow & window) {
-	sf::Texture tex_wall;
-	tex_wall.loadFromFile("tiles/wall.png");
+/*
+	Draws the objects on this space to the window
 
-	sf::Sprite spr_wall;
-	spr_wall.setTexture(tex_wall);
-	spr_wall.setPosition(this->position);
+	@param window pointer to the window to draw to 
+*/
+void GridSpace::draw(sf::RenderWindow & window) 
+{
+	for (GridObject & o : grid_objects) {
+		o.draw(window);
+	}
+}
 
-	window.draw(spr_wall);
+/*
+	Add a GridObject to this space
+
+	@param object the object to add to this space
+*/
+void GridSpace::addObject(GridObject object) {
+	object.setPosition(position);
+	this->grid_objects.push_back(object);
 }

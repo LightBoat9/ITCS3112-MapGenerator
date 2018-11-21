@@ -5,17 +5,20 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <list>
+#include <vector>
 
-class Grid {
-private:
-	std::list<GridSpace> grid_spaces;
+class Grid
+{
+protected:
+	std::vector<GridSpace> grid_spaces;
 	sf::Vector2f position;
-	sf::Vector2f size;
+	sf::Vector2<int> size;
 	sf::Vector2f space_size;
 public:
-	Grid(sf::Vector2f position, sf::Vector2f size, sf::Vector2f space_size);
+	Grid(sf::Vector2f position, sf::Vector2<int> size, sf::Vector2f space_size);
 	void draw(sf::RenderWindow & window);
+	void drawSpace(sf::RenderWindow & window, int space_index);
+	sf::Vector2<int> getSize();
 };
 
 

@@ -6,12 +6,18 @@
 #include <string>
 
 
-class GridObject : sf::Sprite {
+class GridObject 
+{
 private:
 	std::string name = "object";
+	sf::Texture texture;
+	sf::Sprite sprite;
+	sf::Vector2f position = sf::Vector2f();
 public:
-	GridObject(const sf::Texture & texture);
+	GridObject(std::string texture_file);
+	void setPosition(sf::Vector2f position);
+	sf::Vector2f getPosition();
+	void GridObject::draw(sf::RenderWindow & window);
 };
-
 
 #endif

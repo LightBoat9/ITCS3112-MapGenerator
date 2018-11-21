@@ -11,17 +11,18 @@
 #include <ratio>
 #include <iostream>
 
-sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");
-GridMap grid = GridMap(sf::Vector2f(64, 32), sf::Vector2f(21, 21), sf::Vector2f(16, 16));
+sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");  // The window where the UI of the program is drawn
+GridMap grid_map = GridMap(sf::Vector2f(64, 32), sf::Vector2<int>(21, 21), sf::Vector2f(24, 24));  // The GridMap for the user to interact with
 
 // Vars for map generation speed and timing
 double timer = 0.0;
 double interval = 1.0 / 50.0;
-int speed = 3;
+int speed = 1;
 int visible_count = 0;
 
 /* Centers the window based on the users screen size*/
-void centerWindow() {
+void centerWindow() 
+{
 	RECT desktop;
 	const HWND hDesktop = GetDesktopWindow();
 	GetWindowRect(hDesktop, &desktop);
@@ -30,39 +31,20 @@ void centerWindow() {
 }
 
 /* Runs once at program start */
-void ready() {
+void ready() 
+{
 	centerWindow();
 }
 
 /* Draws the current grid to the screen */
-void drawGrid() {
-    /*sf::Texture tex_wall;
-    tex_wall.loadFromFile("tiles/wall.png");
-
-    sf::Sprite spr_wall;
-    spr_wall.setTexture(tex_wall);
-
-    for (int i = 0; i < visible_count; i++) {
-        spr_wall.setPosition(sf::Vector2f(16 + 16 * (i % grid_size.x), 16 + 16 * (i / grid_size.x)));
-        window.draw(spr_wall);
-    }*/
-	grid.draw(window);
+void drawGrid() 
+{
+	grid_map.draw(window);
 }
 
 /* Called once every "game loop" */
-void update(double delta) {
-	/*
-    if (visible_count < grid_size.x * grid_size.y) {
-        timer += delta;
-        if (timer >= interval) {
-            visible_count += speed;
-            timer = 0.0;
-        }
-    }
-    else {
-        visible_count = grid_size.x * grid_size.y;
-    }*/
-
+void update(double delta) 
+{
     drawGrid();
 }
 
@@ -79,7 +61,7 @@ int main()
                 window.close();
         }
 
-        window.clear();
+		window.clear();
 
         std::chrono::high_resolution_clock::time_point current_time = std::chrono::high_resolution_clock::now();
         update(std::chrono::duration_cast<std::chrono::duration<double>>(current_time - last_time).count());
