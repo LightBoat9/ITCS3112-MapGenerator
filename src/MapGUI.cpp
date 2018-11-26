@@ -14,12 +14,6 @@
 sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");  // The window where the UI of the program is drawn
 GridMap grid_map = GridMap(sf::Vector2f(200, 32), sf::Vector2<int>(15, 15), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
 
-// Vars for map generation speed and timing
-double timer = 0.0;
-double interval = 1.0 / 50.0;
-int speed = 1;
-int visible_count = 0;
-
 /* Centers the window based on the users screen size*/
 void centerWindow() 
 {
@@ -45,12 +39,16 @@ void drawGrid()
 /* Called once every "game loop" */
 void update(double delta) 
 {
-    drawGrid();
+	drawGrid();
+	std::cout << delta << std::endl;
 }
 
 int main()
 {
+	// Call ready function
     ready();
+
+	// Handle Game Loop
 	std::chrono::high_resolution_clock::time_point last_time = std::chrono::high_resolution_clock::now();
     while (window.isOpen())
     {
@@ -60,7 +58,6 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
 		window.clear();
 
         std::chrono::high_resolution_clock::time_point current_time = std::chrono::high_resolution_clock::now();
