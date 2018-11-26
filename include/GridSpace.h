@@ -17,6 +17,7 @@ public:
 	GridSpace(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow & window);
 	void addObject(GridObject object);
+	GridObject * removeObject(int index);
 };
 
 

@@ -20,4 +20,16 @@ public:
 	void GridObject::draw(sf::RenderWindow & window);
 };
 
+class Wall : public GridObject
+{
+public:
+	Wall();
+};
+
+class Floor : public GridObject
+{
+public:
+	Floor();
+};
+
 #endif

@@ -12,7 +12,7 @@
 #include <iostream>
 
 sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");  // The window where the UI of the program is drawn
-GridMap grid_map = GridMap(sf::Vector2f(64, 32), sf::Vector2<int>(21, 21), sf::Vector2f(24, 24));  // The GridMap for the user to interact with
+GridMap grid_map = GridMap(sf::Vector2f(200, 32), sf::Vector2<int>(15, 15), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
 
 // Vars for map generation speed and timing
 double timer = 0.0;

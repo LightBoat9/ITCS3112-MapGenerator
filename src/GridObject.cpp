@@ -39,7 +39,16 @@ sf::Vector2f GridObject::getPosition() {
 */
 void GridObject::draw(sf::RenderWindow & window)
 {
+	sf::Vector2i mp = sf::Mouse::getPosition(window);
+
+	if (mp.x >= position.x && mp.y >= position.y && mp.x < position.x + texture.getSize().x && mp.y < position.y + texture.getSize().y) {
+		sprite.setColor(sf::Color::Red);
+	}
 	sprite.setTexture(texture);
 	sprite.setPosition(position);
 	window.draw(sprite);
 }
+
+Wall::Wall() : GridObject("tiles/wall.png") {};
+
+Floor::Floor() : GridObject("tiles/floor.png") {};

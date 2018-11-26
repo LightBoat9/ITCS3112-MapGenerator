@@ -33,3 +33,9 @@ void GridSpace::addObject(GridObject object) {
 	object.setPosition(position);
 	this->grid_objects.push_back(object);
 }
+
+GridObject * GridSpace::removeObject(int index) {
+	GridObject * obj = &grid_objects[index];
+	grid_objects.erase(grid_objects.begin() + index);
+	return obj;
+}
