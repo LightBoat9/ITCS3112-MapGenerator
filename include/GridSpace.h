@@ -16,8 +16,11 @@ protected:
 public:
 	GridSpace(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow & window);
-	void addObject(GridObject object);
-	GridObject * removeObject(int index);
+	void addObject(GridObject & object);
+	bool hasObject(std::string name);
+	bool isEmpty();
+	GridObject & removeObject(int index);
+	void clearObjects();
 };
 
 

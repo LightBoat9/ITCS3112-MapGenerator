@@ -32,6 +32,10 @@ sf::Vector2f GridObject::getPosition() {
 	return position;
 }
 
+std::string GridObject::getName() {
+	return name;
+}
+
 /*
 	Draw this objects texture to the window
 
@@ -44,6 +48,10 @@ void GridObject::draw(sf::RenderWindow & window)
 	window.draw(sprite);
 }
 
-Wall::Wall() : GridObject("tiles/wall.png") {};
+Wall::Wall() : GridObject("tiles/wall.png") {
+	name = "wall";
+};
 
-Floor::Floor() : GridObject("tiles/floor.png") {};
+Floor::Floor() : GridObject("tiles/floor.png") {
+	name = "floor";
+};

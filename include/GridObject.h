@@ -8,7 +8,7 @@
 
 class GridObject 
 {
-private:
+protected:
 	std::string name = "object";
 	sf::Texture texture;
 	sf::Sprite sprite;
@@ -17,6 +17,7 @@ public:
 	GridObject(std::string texture_file);
 	void setPosition(sf::Vector2f position);
 	sf::Vector2f getPosition();
+	std::string getName();
 	void GridObject::draw(sf::RenderWindow & window);
 };
 

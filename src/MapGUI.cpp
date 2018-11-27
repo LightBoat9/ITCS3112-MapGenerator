@@ -11,8 +11,12 @@
 #include <ratio>
 #include <iostream>
 
-sf::RenderWindow window(sf::VideoMode(1024, 576), "Map Generator");  // The window where the UI of the program is drawn
-GridMap grid_map = GridMap(sf::Vector2f(200, 32), sf::Vector2<int>(15, 15), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
+sf::RenderWindow window(sf::VideoMode(1280, 720), "Map Generator");  // The window where the UI of the program is drawn
+GridMap grid_map = GridMap(sf::Vector2f(256, 16), sf::Vector2<int>(31, 21), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
+sf::Font font;
+int seed = rand();
+bool display = true;
+sf::Text text;
 
 /* Centers the window based on the users screen size*/
 void centerWindow() 
@@ -28,6 +32,14 @@ void centerWindow()
 void ready() 
 {
 	centerWindow();
+	grid_map.setSeed(seed);
+	grid_map.generate();
+	font.loadFromFile("fonts/Cave-Story.ttf");
+
+	// Font stuff
+	text.setFont(font);
+	text.setCharacterSize(32);
+	text.setFillColor(sf::Color::White);
 }
 
 /* Draws the current grid to the screen */
@@ -36,11 +48,26 @@ void drawGrid()
 	grid_map.draw(window);
 }
 
+void drawUI() {
+	text.setPosition(sf::Vector2f(16, 16));
+	text.setString("Seed: " + std::to_string(seed));
+	window.draw(text);
+
+	text.setPosition(sf::Vector2f(16, 80));
+	text.setString("Controls:");
+	window.draw(text);
+
+
+	text.setPosition(sf::Vector2f(16, 112));
+	text.setString("Click: Random Seed");
+	window.draw(text);
+}
+
 /* Called once every "game loop" */
-void update(double delta) 
+void update() 
 {
 	drawGrid();
-	std::cout << delta << std::endl;
+	drawUI();
 }
 
 int main()
@@ -49,22 +76,31 @@ int main()
     ready();
 
 	// Handle Game Loop
-	std::chrono::high_resolution_clock::time_point last_time = std::chrono::high_resolution_clock::now();
     while (window.isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				seed = rand();
+				window.clear();
+				drawUI();
+				window.display();
+				grid_map.setSeed(seed);
+				grid_map.generate();
+				display = true;
+			}
         }
-		window.clear();
 
-        std::chrono::high_resolution_clock::time_point current_time = std::chrono::high_resolution_clock::now();
-        update(std::chrono::duration_cast<std::chrono::duration<double>>(current_time - last_time).count());
-        last_time = current_time;
-
-        window.display();
+		if (display) {
+			window.clear();
+			update();
+			window.display();
+			display = false;
+		}
     }
     return 0;
 }
