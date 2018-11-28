@@ -26,6 +26,13 @@ void GridSpace::draw(sf::RenderWindow & window)
 	}
 }
 
+void GridSpace::draw(sf::RenderTexture & texture)
+{
+	for (GridObject & o : grid_objects) {
+		o.draw(texture);
+	}
+}
+
 /*
 	Add a GridObject to this space
 

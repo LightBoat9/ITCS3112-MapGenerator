@@ -74,7 +74,7 @@ void GridMap::carveRooms() {
 
 void GridMap::connectRooms() {
 	GridRoom last_room = rooms[0];
-	for (int r = 1; r < rooms.size(); r++) {
+	for (int r = 1; (unsigned int) r < rooms.size(); r++) {
 		GridRoom goal_room = rooms[r];
 		int x_dist = last_room.getPosition().x - goal_room.getPosition().x;
 		int y_dist = last_room.getPosition().y - goal_room.getPosition().y;
@@ -138,4 +138,21 @@ void GridMap::generate() {
 	carveRooms();
 	connectRooms();
 	removeDeadEnds();
+}
+
+void GridMap::generate(int step) {
+	switch (step) {
+	case 0:
+		clear();
+		fill<Wall>();
+		break;
+	case 1:
+		generateRooms();
+		carveRooms();
+		break;
+	case 2:
+		connectRooms();
+		removeDeadEnds();
+		break;
+	}
 }

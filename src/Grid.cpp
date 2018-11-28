@@ -34,6 +34,14 @@ void Grid::draw(sf::RenderWindow & window)
 	}
 }
 
+void Grid::draw(sf::RenderTexture & texture)
+{
+	for (GridSpace g : this->grid_spaces)
+	{
+		g.draw(texture);
+	}
+}
+
 /*
 	Call the draw function of a specific space on this grid
 
@@ -48,6 +56,14 @@ void Grid::drawSpace(sf::RenderWindow & window, int space_index)
 /*
 	@returns size the size of this grid
 */
-sf::Vector2<int> Grid::getSize() {
+sf::Vector2i Grid::getSize() {
 	return this->size;
+}
+
+sf::Vector2f Grid::getPosition() {
+	return this->position;
+}
+
+sf::Vector2f Grid::getRectSize() {
+	return sf::Vector2f(this->size.x * this->space_size.x, this->size.y * this->space_size.y);
 }

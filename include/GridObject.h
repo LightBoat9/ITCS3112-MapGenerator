@@ -19,6 +19,7 @@ public:
 	sf::Vector2f getPosition();
 	std::string getName();
 	void GridObject::draw(sf::RenderWindow & window);
+	void GridObject::draw(sf::RenderTexture & texture);
 };
 
 class Wall : public GridObject

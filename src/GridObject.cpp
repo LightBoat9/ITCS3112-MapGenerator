@@ -48,6 +48,13 @@ void GridObject::draw(sf::RenderWindow & window)
 	window.draw(sprite);
 }
 
+void GridObject::draw(sf::RenderTexture & texture)
+{
+	sprite.setTexture(this->texture);
+	sprite.setPosition(sf::Vector2f(position));
+	texture.draw(sprite);
+}
+
 Wall::Wall() : GridObject("tiles/wall.png") {
 	name = "wall";
 };

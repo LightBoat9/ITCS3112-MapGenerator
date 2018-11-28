@@ -2,6 +2,7 @@
 	Main driver for the MapGenerator project. Displays the map to the screen and allows user input for manipulating the map.
 */
 #include "GridMap.h"
+#include "Button.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -11,12 +12,18 @@
 #include <ratio>
 #include <iostream>
 
-sf::RenderWindow window(sf::VideoMode(1280, 720), "Map Generator");  // The window where the UI of the program is drawn
-GridMap grid_map = GridMap(sf::Vector2f(256, 16), sf::Vector2<int>(31, 21), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
+sf::RenderWindow window(sf::VideoMode(1280, 720), "Map Generator", sf::Style::Close);  // The window where the UI of the program is drawn
+GridMap grid_map = GridMap(sf::Vector2f(266, 24), sf::Vector2<int>(31, 21), sf::Vector2f(32, 32));  // The GridMap for the user to interact with
 sf::Font font;
-int seed = rand();
-bool display = true;
+int seed = time(NULL) % RAND_MAX;
+
+Button randomize;
+Button generate;
+
 sf::Text text;
+
+bool redraw = true;
+sf::RenderTexture gridTexture;
 
 /* Centers the window based on the users screen size*/
 void centerWindow() 
@@ -32,20 +39,28 @@ void centerWindow()
 void ready() 
 {
 	centerWindow();
+	
+	// Set first seed
 	grid_map.setSeed(seed);
 	grid_map.generate();
-	font.loadFromFile("fonts/Cave-Story.ttf");
 
-	// Font stuff
+	// Text / Font setup
+	font.loadFromFile("fonts/Cave-Story.ttf");
 	text.setFont(font);
 	text.setCharacterSize(32);
 	text.setFillColor(sf::Color::White);
+
+	gridTexture.create(window.getSize().x, window.getSize().y);
+
+	randomize = Button(sf::Vector2f(16, 64), "Randomize", font);
+	generate = Button(randomize.getPosition() + sf::Vector2f(0, 48), "Generate", font);
 }
 
 /* Draws the current grid to the screen */
 void drawGrid() 
 {
-	grid_map.draw(window);
+	gridTexture.clear();
+	grid_map.draw(gridTexture);
 }
 
 void drawUI() {
@@ -53,20 +68,23 @@ void drawUI() {
 	text.setString("Seed: " + std::to_string(seed));
 	window.draw(text);
 
-	text.setPosition(sf::Vector2f(16, 80));
-	text.setString("Controls:");
-	window.draw(text);
-
-
-	text.setPosition(sf::Vector2f(16, 112));
-	text.setString("Click: Random Seed");
-	window.draw(text);
+	randomize.draw(window);
+	generate.draw(window);
 }
 
 /* Called once every "game loop" */
 void update() 
 {
-	drawGrid();
+	if (redraw) {
+		drawGrid();
+		redraw = false;
+	}
+
+	sf::Sprite grid;
+	grid.setTexture(gridTexture.getTexture());
+	grid.setPosition(sf::Vector2f(0, 0));
+	window.draw(grid);
+	
 	drawUI();
 }
 
@@ -78,29 +96,31 @@ int main()
 	// Handle Game Loop
     while (window.isOpen())
     {
-        sf::Event event;
+		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-				seed = rand();
-				window.clear();
-				drawUI();
-				window.display();
-				grid_map.setSeed(seed);
-				grid_map.generate();
-				display = true;
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (randomize.isHovered()) {
+					seed = rand();
+					grid_map.setSeed(seed);
+				}
+				else if (generate.isHovered()) {
+					window.clear();
+					drawUI();
+					window.display();
+					grid_map.setSeed(seed);
+					grid_map.generate();
+					redraw = true;
+				}
 			}
         }
 
-		if (display) {
-			window.clear();
-			update();
-			window.display();
-			display = false;
-		}
+		window.clear();
+		update();
+		window.display();
     }
     return 0;
 }

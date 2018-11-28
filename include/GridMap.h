@@ -28,6 +28,7 @@ public:
 	void setSeed(int seed);
 	void clear();
 	void generate();
+	void generate(int step);
 };
 
 #endif
