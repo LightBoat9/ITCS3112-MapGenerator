@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+GridObject::GridObject() {}
 
 /*
 	Constructor
@@ -36,6 +37,10 @@ std::string GridObject::getName() {
 	return name;
 }
 
+std::string GridObject::getType() {
+	return type;
+}
+
 /*
 	Draw this objects texture to the window
 
@@ -57,8 +62,31 @@ void GridObject::draw(sf::RenderTexture & texture)
 
 Wall::Wall() : GridObject("tiles/wall.png") {
 	name = "wall";
+	type = "wall";
 };
 
 Floor::Floor() : GridObject("tiles/floor.png") {
 	name = "floor";
+	type = "floor";
 };
+
+RandomItem::RandomItem() : GridObject("tiles/potion.png") {
+	name = "item";
+}
+
+void RandomItem::randomizeItem() {
+	std::string s = sprites[rand() % sizeof(sprites)/sizeof(*sprites)];
+	texture.loadFromFile(s);
+}
+
+Player::Player() : GridObject("tiles/player.png") {
+	name = "player";
+}
+
+Shrine::Shrine() : GridObject("tiles/shrine.png") {
+	name = "shrine";
+}
+
+Stairs::Stairs() : GridObject("tiles/stairs.png") {
+	name = "stairs";
+}

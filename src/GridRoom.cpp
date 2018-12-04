@@ -1,6 +1,8 @@
 #include "GridRoom.h"
 
-GridRoom::GridRoom(sf::Vector2<int> position, sf::Vector2<int> size) 
+GridRoom::GridRoom() {}
+
+GridRoom::GridRoom(sf::Vector2i position, sf::Vector2i size) 
 {
 	this->position = position;
 	this->size = size;
@@ -13,10 +15,14 @@ bool GridRoom::overlaps(GridRoom other)
 	return true;
 }
 
-sf::Vector2<int> GridRoom::getPosition() {
+sf::Vector2i GridRoom::getPosition() {
 	return position;
 }
 
-sf::Vector2<int> GridRoom::getSize() {
+sf::Vector2i GridRoom::getSize() {
 	return size;
+}
+
+sf::Vector2i GridRoom::randomPoint() {
+	return sf::Vector2i(position.x + (rand() % size.x), position.y + (rand() % size.y));
 }

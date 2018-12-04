@@ -1,5 +1,7 @@
 #include "Grid.h"
 
+Grid::Grid() {}
+
 /*
 	Constructor
 

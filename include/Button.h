@@ -1,25 +1,28 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <SFML/Graphics.hpp>
 #include <string>
 
-class Button 
-{
+#include "Widget.h"
+
+class Button : public Widget {
 protected:
 	sf::RectangleShape background;
 	sf::Font font;
 	sf::Text text;
-	sf::Vector2f position;
+	int text_size = 32;
 	int padding = 16;
 	bool hovered = false;
+	void update();
 public:
 	Button();
 	Button(sf::Vector2f position, std::string text, sf::Font & font);
-	void update();
 	sf::Vector2f getPosition();
-	void draw(sf::RenderWindow & window);
+	void setPosition(sf::Vector2f position);
 	bool isHovered();
+	int getPadding();
+	void setPadding(int padding);
+	void draw(sf::RenderWindow & window);
 };
 
 #endif

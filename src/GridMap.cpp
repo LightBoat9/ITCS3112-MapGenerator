@@ -2,6 +2,8 @@
 #include <iostream>
 #include <queue>
 
+GridMap::GridMap() {}
+
 /*
 	Constructor
 
@@ -34,11 +36,11 @@ int GridMap::makeOdd(int value) {
 }
 
 sf::Vector2<int> GridMap::randomRoomSize() {
-	return sf::Vector2<int>(makeOdd(room_min_size + rand() % ((room_max_size + 1) - room_min_size)), makeOdd(room_min_size + rand() % ((room_max_size + 1) - room_min_size)));
+	return sf::Vector2<int>(makeOdd(room_size.x + rand() % ((room_size.y + 1) - room_size.x)), makeOdd(room_size.x + rand() % ((room_size.y + 1) - room_size.x)));
 }
 
 void GridMap::generateRooms() {
-	rooms.clear();
+	rooms = std::vector<GridRoom>();
 	// Attempt to create valid rooms n number of times (room_attempts)
 	for (int i = 0; i < room_attempts; i++) {
 		sf::Vector2<int> r_size = randomRoomSize();
@@ -73,28 +75,31 @@ void GridMap::carveRooms() {
 }
 
 void GridMap::connectRooms() {
-	GridRoom last_room = rooms[0];
-	for (int r = 1; (unsigned int) r < rooms.size(); r++) {
-		GridRoom goal_room = rooms[r];
-		int x_dist = last_room.getPosition().x - goal_room.getPosition().x;
-		int y_dist = last_room.getPosition().y - goal_room.getPosition().y;
+	GridRoom last_room;
+	if (rooms.size() > 0) {
+		last_room = rooms[0];
+		for (int r = 1; (unsigned int)r < rooms.size(); r++) {
+			GridRoom goal_room = rooms[r];
+			int x_dist = last_room.getPosition().x - goal_room.getPosition().x;
+			int y_dist = last_room.getPosition().y - goal_room.getPosition().y;
 
-		sf::Vector2<int> point = sf::Vector2<int>(last_room.getPosition().x + (x_dist < 0 ? last_room.getSize().x : -1), last_room.getPosition().y + rand() % last_room.getSize().y);
-		sf::Vector2<int> goal_point = sf::Vector2<int>(goal_room.getPosition().x + rand() % goal_room.getSize().x, goal_room.getPosition().y + (y_dist > 0 ? goal_room.getSize().y : -1));
-
-		grid_spaces[point.x + point.y * size.x].clearObjects();
-		grid_spaces[point.x + point.y * size.x].addObject(Floor());
-
-		while (point != goal_point) {
-			if (point.x > goal_point.x || point.x < goal_point.x) point.x += (goal_point.x - point.x > 0) - (goal_point.x - point.x < 0);
-			else if (point.y < goal_point.y) point.y += 1;
-			else if (point.y > goal_point.y) point.y -= 1;
+			sf::Vector2<int> point = sf::Vector2<int>(last_room.getPosition().x + (x_dist < 0 ? last_room.getSize().x : -1), last_room.getPosition().y + rand() % last_room.getSize().y);
+			sf::Vector2<int> goal_point = sf::Vector2<int>(goal_room.getPosition().x + rand() % goal_room.getSize().x, goal_room.getPosition().y + (y_dist > 0 ? goal_room.getSize().y : -1));
 
 			grid_spaces[point.x + point.y * size.x].clearObjects();
 			grid_spaces[point.x + point.y * size.x].addObject(Floor());
-		}
 
-		last_room = goal_room;
+			while (point != goal_point) {
+				if (point.x > goal_point.x || point.x < goal_point.x) point.x += (goal_point.x - point.x > 0) - (goal_point.x - point.x < 0);
+				else if (point.y < goal_point.y) point.y += 1;
+				else if (point.y > goal_point.y) point.y -= 1;
+
+				grid_spaces[point.x + point.y * size.x].clearObjects();
+				grid_spaces[point.x + point.y * size.x].addObject(Floor());
+			}
+
+			last_room = goal_room;
+		}
 	}
 }
 
@@ -121,6 +126,16 @@ void GridMap::fill() {
 	}
 }
 
+void GridMap::addItems() {
+	if (hasRooms()) {
+		for (int i = 0; i < item_attempts; i++) {
+			RandomItem g = RandomItem();
+			g.randomizeItem();
+			addObjectRandom(g);
+		}
+	}
+}
+
 void GridMap::clear() {
 	for (GridSpace & s : grid_spaces) {
 		s.clearObjects();
@@ -131,6 +146,58 @@ void GridMap::setSeed(int seed) {
 	srand(seed);
 }
 
+GridRoom GridMap::randomRoom() {
+	return rooms[rand() % rooms.size()];
+}
+
+bool GridMap::hasRooms() {
+	return rooms.size() > 0;
+}
+
+bool GridMap::isFull(std::string avoid_type) {
+	for (int r = 0; r < rooms.size(); r++) {
+		GridRoom room = rooms[r];
+		for (int i = 0; i < room.getSize().x * room.getSize().y; i++) {
+			sf::Vector2i p = room.getPosition() + sf::Vector2i(i % room.getSize().x, i / room.getSize().x);
+			if (!grid_spaces[p.x + p.y * size.x].hasObjectType(avoid_type)) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+void GridMap::setRoomAttempts(int room_attempts) {
+	this->room_attempts = room_attempts;
+}
+
+void GridMap::setItemAttempts(int item_attempts) {
+	this->item_attempts = item_attempts;
+}
+
+void GridMap::setRoomSize(sf::Vector2i room_size) {
+	this->room_size = room_size;
+}
+
+sf::Vector2i GridMap::getRoomSize() {
+	return room_size;
+}
+
+sf::Vector2i GridMap::randomRoomPoint(std::string avoid_type="") {
+	sf::Vector2i p = randomRoom().randomPoint();
+	while (grid_spaces[p.x + p.y * size.x].hasObjectType(avoid_type)) {
+		p = randomRoom().randomPoint();
+	}
+	return p;
+}
+
+void GridMap::addObjectRandom(GridObject & object) {
+	if (hasRooms() && !isFull("object")) {
+		sf::Vector2i p = randomRoomPoint("object");
+		grid_spaces[p.x + p.y * size.x].addObject(object);
+	}
+}
+
 void GridMap::generate() {
 	clear();
 	fill<Wall>();
@@ -138,21 +205,12 @@ void GridMap::generate() {
 	carveRooms();
 	connectRooms();
 	removeDeadEnds();
-}
-
-void GridMap::generate(int step) {
-	switch (step) {
-	case 0:
-		clear();
-		fill<Wall>();
-		break;
-	case 1:
-		generateRooms();
-		carveRooms();
-		break;
-	case 2:
-		connectRooms();
-		removeDeadEnds();
-		break;
-	}
+	// Add the player
+	addObjectRandom(Player());
+	// Add the stairs
+	addObjectRandom(Stairs());
+	// Add the shrine
+	addObjectRandom(Shrine());
+	// Add the random items
+	addItems();
 }

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+GridSpace::GridSpace() {}
+
 /*
 	Constructor
 
@@ -46,6 +48,15 @@ void GridSpace::addObject(GridObject & object) {
 bool GridSpace::hasObject(std::string name) {
 	for (GridObject & o : grid_objects) {
 		if (o.getName() == name) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool GridSpace::hasObjectType(std::string type) {
+	for (GridObject & o : grid_objects) {
+		if (o.getType() == type) {
 			return true;
 		}
 	}
