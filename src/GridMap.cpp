@@ -2,7 +2,6 @@
 #include <iostream>
 #include <queue>
 
-
 /*
 	Create an invalid grid
 */
@@ -231,11 +230,26 @@ bool GridMap::isFull(std::string avoid_type) {
 	return true;
 }
 
+
+/*
+	@return the number of times this gridmap will attempt to create rooms when generate is called
+*/
+int GridMap::getRoomAttempts() {
+	return room_attempts;
+}
+
 /*
 	Set the number of room attempts. This is the numbe of times this grid will attemp to create rooms when calling generate.
 */
 void GridMap::setRoomAttempts(int room_attempts) {
 	this->room_attempts = room_attempts;
+}
+
+/*
+	@return the number of attempts that generate will try to create items on this gridmap
+*/
+int GridMap::getitemAttempts() {
+	return item_attempts;
 }
 
 /*
@@ -252,21 +266,28 @@ void GridMap::setEnemyAttempts(int enemy_attempts) {
 	this->enemy_attempts = enemy_attempts;
 }
 
-
 /*
-	Set the minimum and maximum room size for this grid. The generated rooms will be somewhere in this range including the min and max.
+	@return the number of attempts this map will take to create enemies when generate is called
 */
-void GridMap::setRoomSize(sf::Vector2i room_size) {
-	this->room_size = room_size;
+int GridMap::getEnemyAttempts() {
+	return enemy_attempts;
 }
 
 /*
-	@return The minimum and maximum size for rooms on this grid.
+	@return the room size of the rooms on this gridmap
 */
 sf::Vector2i GridMap::getRoomSize() {
 	return room_size;
 }
 
+/*
+	Set the room size of this gridmap
+
+	@param room_size the room size of rooms on this gridmap
+*/
+void GridMap::setRoomSize(sf::Vector2i room_size) {
+	this->room_size = room_size;
+}
 /*
 	@return A random point that is inside one of the rooms on this grid.
 */

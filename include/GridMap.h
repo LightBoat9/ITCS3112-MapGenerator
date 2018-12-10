@@ -38,11 +38,14 @@ public:
 	sf::Vector2<int> randomRoomSize();
 	void setSeed(int seed);
 	int getSeed();
+	int getRoomAttempts();
 	void setRoomAttempts(int room_attempts);
+	int getitemAttempts();
 	void setItemAttempts(int item_attempts);
+	int getEnemyAttempts();
 	void setEnemyAttempts(int enemy_attempts);
-	void setRoomSize(sf::Vector2i room_size);
 	sf::Vector2i getRoomSize();
+	void setRoomSize(sf::Vector2i room_size);
 	void clear();
 	void generate();
 };

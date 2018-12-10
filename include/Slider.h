@@ -52,8 +52,16 @@ public:
 		return min;
 	}
 
+	void setMin(T min) {
+		this->min = min;
+	}
+
 	T getMax() {
 		return max;
+	}
+
+	void setMax(T max) {
+		this->max = max;
 	}
 
 	void draw(sf::RenderWindow & window) {

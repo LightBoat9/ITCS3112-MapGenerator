@@ -60,6 +60,9 @@ void GridObject::draw(sf::RenderTexture & texture)
 	texture.draw(sprite);
 }
 
+
+// Subclass objects
+
 Wall::Wall() : GridObject("tiles/wall.png") {
 	name = "wall";
 	type = "wall";

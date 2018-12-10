@@ -64,6 +64,14 @@ int Button::getPadding() {
 }
 
 /*
+	@return the text displayed on this button
+*/
+std::string Button::getText() {
+	return text.getString();
+}
+
+
+/*
 	Set the padding of the button, the extra space added to all sides of the button
 	
 	@param padding the new padding

@@ -22,6 +22,7 @@ public:
 	bool isHovered();
 	int getPadding();
 	void setPadding(int padding);
+	std::string getText();
 	void draw(sf::RenderWindow & window);
 };
 
