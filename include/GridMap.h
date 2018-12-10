@@ -10,10 +10,11 @@
 
 class GridMap : public Grid 
 {
-protected:
+private:
 	int seed;
 	int room_attempts = 200;
-	int item_attempts = 20;
+	int item_attempts = 0;
+	int enemy_attempts = 0;
 	std::vector<GridRoom> rooms;
 	sf::Vector2i grid_size = sf::Vector2<int>(21, 21);
 	sf::Vector2i room_size = sf::Vector2i(3, 7);
@@ -22,6 +23,7 @@ protected:
 	void connectRooms();
 	void removeDeadEnds();
 	void addItems();
+	void addEnemies();
 	int makeOdd(int value);
 	template<class T> void fill();
 public:
@@ -35,8 +37,10 @@ public:
 	bool isFull(std::string avoid_type);
 	sf::Vector2<int> randomRoomSize();
 	void setSeed(int seed);
+	int getSeed();
 	void setRoomAttempts(int room_attempts);
 	void setItemAttempts(int item_attempts);
+	void setEnemyAttempts(int enemy_attempts);
 	void setRoomSize(sf::Vector2i room_size);
 	sf::Vector2i getRoomSize();
 	void clear();

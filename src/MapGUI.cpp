@@ -13,8 +13,7 @@
 // The window where the UI of the program is drawn
 sf::RenderWindow window(sf::VideoMode(1280, 720), "Map Generator", sf::Style::Close);
 
-// The GridMap for the user to interact with
-int seed = 123456;
+// The GridMap for the user to interact with, and properties
 GridMap grid_map = GridMap(sf::Vector2f(266, 24), sf::Vector2<int>(31, 21), sf::Vector2f(32, 32));
 sf::RenderTexture gridTexture;
 bool redraw_grid = true;
@@ -26,6 +25,7 @@ Slideri room_attempts;
 Slideri room_min;
 Slideri room_max;
 Slideri item_attempts;
+Slideri enemy_attempts;
 
 // Text stuff
 sf::Font font;
@@ -62,10 +62,12 @@ void ready()
 	room_min = Slideri(room_attempts.getPosition() + sf::Vector2f(0, 80), 3, 7, sf::Vector2f(15 * 16, 16), sf::Vector2f(24, 24));
 	room_max = Slideri(room_min.getPosition() + sf::Vector2f(0, 80), 7, 11, sf::Vector2f(15 * 16, 16), sf::Vector2f(24, 24));
 	item_attempts = Slideri(room_max.getPosition() + sf::Vector2f(0, 80), 0, 20, sf::Vector2f(15 * 16, 16), sf::Vector2f(24, 24));
+	enemy_attempts = Slideri(item_attempts.getPosition() + sf::Vector2f(0, 80), 0, 20, sf::Vector2f(15 * 16, 16), sf::Vector2f(24, 24));
 
 	// Set first seed
 	grid_map.setRoomAttempts(room_attempts.getValue());
 	grid_map.setItemAttempts(item_attempts.getValue());
+	grid_map.setEnemyAttempts(enemy_attempts.getValue());
 	grid_map.generate();
 }
 
@@ -80,7 +82,7 @@ void drawGrid()
 void drawUI() {
 	// Show seed
 	text.setPosition(sf::Vector2f(16, 16));
-	text.setString("Seed: " + std::to_string(seed));
+	text.setString("Seed: " + std::to_string(grid_map.getSeed()));
 	window.draw(text);
 
 	// Show room attempts and slider
@@ -108,6 +110,12 @@ void drawUI() {
 	text.setString("Item Count: " + std::to_string(item_attempts.getValue()));
 	window.draw(text);
 
+	// Show enemy attempts and slider
+	text.setPosition(item_attempts.getPosition() + sf::Vector2f(0, 36));
+	grid_map.setEnemyAttempts(enemy_attempts.getValue());
+	text.setString("Enemy Count: " + std::to_string(enemy_attempts.getValue()));
+	window.draw(text);
+
 	// Draw all widgets
 	randomize.draw(window);
 	generate.draw(window);
@@ -115,6 +123,7 @@ void drawUI() {
 	room_min.draw(window);
 	room_max.draw(window);
 	item_attempts.draw(window);
+	enemy_attempts.draw(window);
 }
 
 /* Called once every game loop */
@@ -156,7 +165,7 @@ int main()
 			if (event.type == sf::Event::MouseButtonPressed) {
 				// Randomizes the seed
 				if (randomize.isHovered()) {
-					seed = rand();
+					int seed = rand();
 					grid_map.setSeed(seed);
 				}
 				// Generates a new map from the current seed and inputs
@@ -164,7 +173,7 @@ int main()
 					window.clear();
 					drawUI();
 					window.display();
-					grid_map.setSeed(seed);
+					grid_map.setSeed(grid_map.getSeed());
 					grid_map.generate();
 					redraw_grid = true;
 				}

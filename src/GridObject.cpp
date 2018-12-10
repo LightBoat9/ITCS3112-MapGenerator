@@ -79,6 +79,15 @@ void RandomItem::randomizeItem() {
 	texture.loadFromFile(s);
 }
 
+RandomEnemy::RandomEnemy() : GridObject("tiles/ghost.png") {
+	name = "enemy";
+}
+
+void RandomEnemy::randomizeEnemy() {
+	std::string s = sprites[rand() % sizeof(sprites) / sizeof(*sprites)];
+	texture.loadFromFile(s);
+}
+
 Player::Player() : GridObject("tiles/player.png") {
 	name = "player";
 }

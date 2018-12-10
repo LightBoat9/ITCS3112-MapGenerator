@@ -60,6 +60,16 @@ public:
 	void randomizeItem();
 };
 
+class RandomEnemy : public GridObject {
+	char sprites[2][40] = {
+		"tiles/reaper.png",
+		"tiles/ghost.png",
+	};
+public:
+	RandomEnemy();
+	void randomizeEnemy();
+};
+
 class Player : public GridObject {
 public:
 	Player();
