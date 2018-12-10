@@ -1,0 +1,88 @@
+\hypertarget{classGridRoom}{}\section{Grid\+Room Class Reference}
+\label{classGridRoom}\index{Grid\+Room@{Grid\+Room}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGridRoom_ab5605c38ba37778459b38bd53bda53c9}{Grid\+Room} ()
+\item 
+\mbox{\Hypertarget{classGridRoom_a991a5ac52b702875fbcd8e9ca083b47e}\label{classGridRoom_a991a5ac52b702875fbcd8e9ca083b47e}} 
+{\bfseries Grid\+Room} (sf\+::\+Vector2$<$ int $>$ position, sf\+::\+Vector2$<$ int $>$ size)
+\item 
+sf\+::\+Vector2i \hyperlink{classGridRoom_a9ba94d43f72a42d82c75dfb72debe617}{random\+Point} ()
+\item 
+sf\+::\+Vector2i \hyperlink{classGridRoom_a9bbbc4f711ae7c40633d54eafe1cb792}{get\+Position} ()
+\item 
+sf\+::\+Vector2i \hyperlink{classGridRoom_a5c5dc96b8f2a29220ffa654f1aa30bac}{get\+Size} ()
+\item 
+bool \hyperlink{classGridRoom_a5d0d7081a46dae2c15dd3f2935387450}{overlaps} (\hyperlink{classGridRoom}{Grid\+Room} other)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGridRoom_a3a2d910f1d5cec03156f02374801abb6}\label{classGridRoom_a3a2d910f1d5cec03156f02374801abb6}} 
+sf\+::\+Vector2i {\bfseries position}
+\item 
+\mbox{\Hypertarget{classGridRoom_a9a72df53caecff6edadeb21d32f9744c}\label{classGridRoom_a9a72df53caecff6edadeb21d32f9744c}} 
+sf\+::\+Vector2i {\bfseries size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGridRoom_ab5605c38ba37778459b38bd53bda53c9}\label{classGridRoom_ab5605c38ba37778459b38bd53bda53c9}} 
+\index{Grid\+Room@{Grid\+Room}!Grid\+Room@{Grid\+Room}}
+\index{Grid\+Room@{Grid\+Room}!Grid\+Room@{Grid\+Room}}
+\subsubsection{\texorpdfstring{Grid\+Room()}{GridRoom()}}
+{\footnotesize\ttfamily Grid\+Room\+::\+Grid\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Invalid constructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classGridRoom_a9bbbc4f711ae7c40633d54eafe1cb792}\label{classGridRoom_a9bbbc4f711ae7c40633d54eafe1cb792}} 
+\index{Grid\+Room@{Grid\+Room}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Grid\+Room@{Grid\+Room}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Grid\+Room\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the position of this room on a grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGridRoom_a5c5dc96b8f2a29220ffa654f1aa30bac}\label{classGridRoom_a5c5dc96b8f2a29220ffa654f1aa30bac}} 
+\index{Grid\+Room@{Grid\+Room}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Grid\+Room@{Grid\+Room}}
+\subsubsection{\texorpdfstring{get\+Size()}{getSize()}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Grid\+Room\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the size of this room, number of spaces this room contains 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGridRoom_a5d0d7081a46dae2c15dd3f2935387450}\label{classGridRoom_a5d0d7081a46dae2c15dd3f2935387450}} 
+\index{Grid\+Room@{Grid\+Room}!overlaps@{overlaps}}
+\index{overlaps@{overlaps}!Grid\+Room@{Grid\+Room}}
+\subsubsection{\texorpdfstring{overlaps()}{overlaps()}}
+{\footnotesize\ttfamily bool Grid\+Room\+::overlaps (\begin{DoxyParamCaption}\item[{\hyperlink{classGridRoom}{Grid\+Room}}]{other }\end{DoxyParamCaption})}
+
+Return true if this \hyperlink{classGridRoom}{Grid\+Room} overlaps the other \hyperlink{classGridRoom}{Grid\+Room}
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the other \hyperlink{classGridRoom}{Grid\+Room} to check for overlap \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if this \hyperlink{classGridRoom}{Grid\+Room} overlaps the other \hyperlink{classGridRoom}{Grid\+Room} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGridRoom_a9ba94d43f72a42d82c75dfb72debe617}\label{classGridRoom_a9ba94d43f72a42d82c75dfb72debe617}} 
+\index{Grid\+Room@{Grid\+Room}!random\+Point@{random\+Point}}
+\index{random\+Point@{random\+Point}!Grid\+Room@{Grid\+Room}}
+\subsubsection{\texorpdfstring{random\+Point()}{randomPoint()}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Grid\+Room\+::random\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+a random point inside this room relative to its position 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/\+I\+T\+C\+S3112-\/\+Map\+Generator/include/Grid\+Room.\+h\item 
+/home/user/\+I\+T\+C\+S3112-\/\+Map\+Generator/src/Grid\+Room.\+cpp\end{DoxyCompactItemize}

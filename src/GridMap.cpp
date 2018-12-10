@@ -2,12 +2,12 @@
 #include <iostream>
 #include <queue>
 
-/*
+/**
 	Create an invalid grid
 */
 GridMap::GridMap() {}
 
-/*
+/**
 	Create a grid at the position relative to the window, with a grid size, and space size
 
 	@param position the upper left origin of this map
@@ -17,7 +17,7 @@ GridMap::GridMap() {}
 GridMap::GridMap(sf::Vector2f position, sf::Vector2<int> size, sf::Vector2f space_size) : Grid(position, size, space_size)
 {}
 
-/*
+/**
 	Return a random point inside the grid, if limit is passed it returns a point inside a subgrid
 
 	@param limit optional reduction of the grid size
@@ -38,7 +38,7 @@ int GridMap::makeOdd(int value) {
 	}
 }
 
-/*
+/**
 	Generate a random room size based on this grid's room_size
 
 	@return a random room size
@@ -47,7 +47,7 @@ sf::Vector2<int> GridMap::randomRoomSize() {
 	return sf::Vector2<int>(makeOdd(room_size.x + rand() % ((room_size.y + 1) - room_size.x)), makeOdd(room_size.x + rand() % ((room_size.y + 1) - room_size.x)));
 }
 
-/*
+/**
 	Attempt to create rooms in this grid that do not overlap based on room_attempts
 */
 void GridMap::generateRooms() {
@@ -73,7 +73,7 @@ void GridMap::generateRooms() {
 	}
 }
 
-/*
+/**
 	Removes all objects from this grid's room points and add the floor object there
 */
 void GridMap::carveRooms() {
@@ -88,7 +88,7 @@ void GridMap::carveRooms() {
 	}
 }
 
-/*
+/**
 	Connect the rooms by carving hallways between them
 */
 void GridMap::connectRooms() {
@@ -120,7 +120,7 @@ void GridMap::connectRooms() {
 	}
 }
 
-/*
+/**
 	Remove any dead ends in the map. Dead ends are classified as Floor objects that have only 1 Floor in their surrounding.
 */
 void GridMap::removeDeadEnds() {
@@ -149,7 +149,7 @@ void GridMap::fill() {
 	}
 }
 
-/*
+/**
 	Add randomItem(s) to this grid based on item_attempts
 */
 void GridMap::addItems() {
@@ -162,7 +162,7 @@ void GridMap::addItems() {
 	}
 }
 
-/*
+/**
 	Add randomEnemie(s) to this grid based on enemy_attempts
 */
 void GridMap::addEnemies() {
@@ -175,7 +175,7 @@ void GridMap::addEnemies() {
 	}
 }
 
-/*
+/**
 	Remove all gridObjects from this grid
 */
 void GridMap::clear() {
@@ -184,7 +184,7 @@ void GridMap::clear() {
 	}
 }
 
-/*
+/**
 	Set the seed for grid generation and set srand for the seed
 */
 void GridMap::setSeed(int seed) {
@@ -192,28 +192,28 @@ void GridMap::setSeed(int seed) {
 	srand(seed);
 }
 
-/*
+/**
 	@return The seed for grid generation
 */
 int GridMap::getSeed() {
 	return seed;
 }
 
-/*
+/**
 	@return A random room from this GridMaps room list
 */
 GridRoom GridMap::randomRoom() {
 	return rooms[rand() % rooms.size()];
 }
 
-/*
+/**
 	@return True if this GridMap has at least 1 room in its room list
 */
 bool GridMap::hasRooms() {
 	return rooms.size() > 0;
 }
 
-/*
+/**
 	@param avoid_type the type of GridObject to avoid
 	@return True if every GridSpace has an object with the type avoid_type
 */
@@ -231,56 +231,56 @@ bool GridMap::isFull(std::string avoid_type) {
 }
 
 
-/*
+/**
 	@return the number of times this gridmap will attempt to create rooms when generate is called
 */
 int GridMap::getRoomAttempts() {
 	return room_attempts;
 }
 
-/*
+/**
 	Set the number of room attempts. This is the numbe of times this grid will attemp to create rooms when calling generate.
 */
 void GridMap::setRoomAttempts(int room_attempts) {
 	this->room_attempts = room_attempts;
 }
 
-/*
+/**
 	@return the number of attempts that generate will try to create items on this gridmap
 */
 int GridMap::getitemAttempts() {
 	return item_attempts;
 }
 
-/*
+/**
 	Set the number of item attempts. This is the number of times this grid will attempt to create a random item when calling generate
 */
 void GridMap::setItemAttempts(int item_attempts) {
 	this->item_attempts = item_attempts;
 }
 
-/*
+/**
 	Set the number of enemy attempts. This is the number of times this grid will attempt to create a random enemy when calling generate
 */
 void GridMap::setEnemyAttempts(int enemy_attempts) {
 	this->enemy_attempts = enemy_attempts;
 }
 
-/*
+/**
 	@return the number of attempts this map will take to create enemies when generate is called
 */
 int GridMap::getEnemyAttempts() {
 	return enemy_attempts;
 }
 
-/*
+/**
 	@return the room size of the rooms on this gridmap
 */
 sf::Vector2i GridMap::getRoomSize() {
 	return room_size;
 }
 
-/*
+/**
 	Set the room size of this gridmap
 
 	@param room_size the room size of rooms on this gridmap
@@ -288,7 +288,7 @@ sf::Vector2i GridMap::getRoomSize() {
 void GridMap::setRoomSize(sf::Vector2i room_size) {
 	this->room_size = room_size;
 }
-/*
+/**
 	@return A random point that is inside one of the rooms on this grid.
 */
 sf::Vector2i GridMap::randomRoomPoint(std::string avoid_type="") {
@@ -299,7 +299,7 @@ sf::Vector2i GridMap::randomRoomPoint(std::string avoid_type="") {
 	return p;
 }
 
-/*
+/**
 	@param object The object instance to add to this grid
 
 	Add the object to a random room point on this grid.
@@ -311,7 +311,7 @@ void GridMap::addObjectRandom(GridObject & object) {
 	}
 }
 
-/*
+/**
 	This will fill the grid based on the generation method of this gridmap. As an example it fills the grid with walls, then generates random rooms in the grid, 
 	carves floors into the grid, connects the rooms with hallways, removes any dead ends, and adds random objects.
 */

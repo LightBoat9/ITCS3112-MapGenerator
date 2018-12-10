@@ -31,7 +31,7 @@ Slideri enemy_attempts;
 sf::Font font;
 sf::Text text;
 
-/* Centers the window based on the users screen size */
+/** Centers the window based on the users screen size */
 void centerWindow() 
 {
 	RECT desktop;
@@ -41,7 +41,7 @@ void centerWindow()
 	window.setPosition(sf::Vector2<int>(screen_size.x / 2 - window.getSize().x / 2, screen_size.y / 2 - window.getSize().y / 2));
 }
 
-/* Runs once at program start */
+/** Runs once at program start */
 void ready() 
 {
 	centerWindow();
@@ -78,7 +78,7 @@ void drawGrid()
 	grid_map.draw(gridTexture);
 }
 
-/* Draw the UI elements that must be updated every game loop */
+/** Draw the UI elements that must be updated every game loop */
 void drawUI() {
 	// Show seed
 	text.setPosition(sf::Vector2f(16, 16));
@@ -126,7 +126,7 @@ void drawUI() {
 	enemy_attempts.draw(window);
 }
 
-/* Called once every game loop */
+/** Called once every game loop */
 void update() 
 {
 	// Only redraw when a new map is generated

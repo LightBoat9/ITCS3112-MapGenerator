@@ -1,0 +1,173 @@
+\hypertarget{classGrid}{}\section{Grid Class Reference}
+\label{classGrid}\index{Grid@{Grid}}
+
+
+Inheritance diagram for Grid\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGrid_a4ac9ff4f63552b4c61ff90fcb35ad66c}{Grid} ()
+\item 
+\mbox{\Hypertarget{classGrid_aa8ed2851d1e58051f5add9d177fbdcd6}\label{classGrid_aa8ed2851d1e58051f5add9d177fbdcd6}} 
+{\bfseries Grid} (sf\+::\+Vector2f position, sf\+::\+Vector2$<$ int $>$ size, sf\+::\+Vector2f space\+\_\+size)
+\item 
+void \hyperlink{classGrid_a9b42b1d0dcfc434d790b11faf4b461ce}{draw} (sf\+::\+Render\+Window \&window)
+\item 
+void \hyperlink{classGrid_aba72dde0bcafe22ad1ac4ef11437d758}{draw} (sf\+::\+Render\+Texture \&texture)
+\item 
+void \hyperlink{classGrid_a4b521f4c9a986643de4bc78ca734f121}{draw\+Space} (sf\+::\+Render\+Window \&window, int space\+\_\+index)
+\item 
+void \hyperlink{classGrid_ad709414fa82c4a0d429244333625c5d4}{set\+Size} (sf\+::\+Vector2i size)
+\item 
+sf\+::\+Vector2i \hyperlink{classGrid_aee705a327a063ddd21d70075fcfa28a5}{get\+Size} ()
+\item 
+sf\+::\+Vector2f \hyperlink{classGrid_a47e4cb0f73060c1b6d23f6d31182b6c1}{get\+Position} ()
+\item 
+void \hyperlink{classGrid_a346fbade99f7202d870980a32f7e3290}{set\+Position} (sf\+::\+Vector2f position)
+\item 
+sf\+::\+Vector2f \hyperlink{classGrid_ac1bef10cb20d82aac5caebdd08fc5900}{get\+Rect\+Size} ()
+\item 
+sf\+::\+Vector2f \hyperlink{classGrid_aab378faa1bf9567a00d871a26ecf818a}{get\+Space\+Size} ()
+\item 
+void \hyperlink{classGrid_ae53bf0b9448b14028ae225cb5f00c00c}{set\+Space\+Size} (sf\+::\+Vector2f space\+\_\+size)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGrid_ab42626190820988b4d0eae4f8967ffe6}\label{classGrid_ab42626190820988b4d0eae4f8967ffe6}} 
+std\+::vector$<$ \hyperlink{classGridSpace}{Grid\+Space} $>$ {\bfseries grid\+\_\+spaces}
+\item 
+\mbox{\Hypertarget{classGrid_a796d0aeab0f020d7db9bff504934418e}\label{classGrid_a796d0aeab0f020d7db9bff504934418e}} 
+sf\+::\+Vector2f {\bfseries position}
+\item 
+\mbox{\Hypertarget{classGrid_ad7aee43ef40b14619a2e05745d2b93df}\label{classGrid_ad7aee43ef40b14619a2e05745d2b93df}} 
+sf\+::\+Vector2i {\bfseries size}
+\item 
+\mbox{\Hypertarget{classGrid_acbf3579d4b25a42e9ce989c2f940bfd7}\label{classGrid_acbf3579d4b25a42e9ce989c2f940bfd7}} 
+sf\+::\+Vector2f {\bfseries space\+\_\+size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGrid_a4ac9ff4f63552b4c61ff90fcb35ad66c}\label{classGrid_a4ac9ff4f63552b4c61ff90fcb35ad66c}} 
+\index{Grid@{Grid}!Grid@{Grid}}
+\index{Grid@{Grid}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{Grid()}{Grid()}}
+{\footnotesize\ttfamily Grid\+::\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Invalid Constructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classGrid_a9b42b1d0dcfc434d790b11faf4b461ce}\label{classGrid_a9b42b1d0dcfc434d790b11faf4b461ce}} 
+\index{Grid@{Grid}!draw@{draw}}
+\index{draw@{draw}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Grid\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+Call the draw function of all \hyperlink{classGridSpace}{Grid\+Space(s)} on this grid
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & pointer to the window to draw to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGrid_aba72dde0bcafe22ad1ac4ef11437d758}\label{classGrid_aba72dde0bcafe22ad1ac4ef11437d758}} 
+\index{Grid@{Grid}!draw@{draw}}
+\index{draw@{draw}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Grid\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Texture \&}]{texture }\end{DoxyParamCaption})}
+
+Call the draw function of all \hyperlink{classGridSpace}{Grid\+Space(s)} on this grid
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & pointer to the texture to draw to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGrid_a4b521f4c9a986643de4bc78ca734f121}\label{classGrid_a4b521f4c9a986643de4bc78ca734f121}} 
+\index{Grid@{Grid}!draw\+Space@{draw\+Space}}
+\index{draw\+Space@{draw\+Space}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{draw\+Space()}{drawSpace()}}
+{\footnotesize\ttfamily void Grid\+::draw\+Space (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window,  }\item[{int}]{space\+\_\+index }\end{DoxyParamCaption})}
+
+Call the draw function of a specific space on this grid
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & pointer to the window to draw to \\
+\hline
+{\em space\+\_\+index} & the index of the space to draw \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGrid_a47e4cb0f73060c1b6d23f6d31182b6c1}\label{classGrid_a47e4cb0f73060c1b6d23f6d31182b6c1}} 
+\index{Grid@{Grid}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the position of this grid relative to the window 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGrid_ac1bef10cb20d82aac5caebdd08fc5900}\label{classGrid_ac1bef10cb20d82aac5caebdd08fc5900}} 
+\index{Grid@{Grid}!get\+Rect\+Size@{get\+Rect\+Size}}
+\index{get\+Rect\+Size@{get\+Rect\+Size}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{get\+Rect\+Size()}{getRectSize()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::get\+Rect\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the total size across this grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGrid_aee705a327a063ddd21d70075fcfa28a5}\label{classGrid_aee705a327a063ddd21d70075fcfa28a5}} 
+\index{Grid@{Grid}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{get\+Size()}{getSize()}}
+{\footnotesize\ttfamily sf\+::\+Vector2i Grid\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+size the size of this grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGrid_aab378faa1bf9567a00d871a26ecf818a}\label{classGrid_aab378faa1bf9567a00d871a26ecf818a}} 
+\index{Grid@{Grid}!get\+Space\+Size@{get\+Space\+Size}}
+\index{get\+Space\+Size@{get\+Space\+Size}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{get\+Space\+Size()}{getSpaceSize()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Grid\+::get\+Space\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the size of this grid\textquotesingle{}s spaces 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGrid_a346fbade99f7202d870980a32f7e3290}\label{classGrid_a346fbade99f7202d870980a32f7e3290}} 
+\index{Grid@{Grid}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Grid\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
+
+Set the position of this grid relative to the window
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & the position relative to the window \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGrid_ad709414fa82c4a0d429244333625c5d4}\label{classGrid_ad709414fa82c4a0d429244333625c5d4}} 
+\index{Grid@{Grid}!set\+Size@{set\+Size}}
+\index{set\+Size@{set\+Size}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{set\+Size()}{setSize()}}
+{\footnotesize\ttfamily void Grid\+::set\+Size (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{size }\end{DoxyParamCaption})}
+
+Set the size of this grid. This is the number of gridspaces in this grid
+
+the number of gridspaces on this grid \mbox{\Hypertarget{classGrid_ae53bf0b9448b14028ae225cb5f00c00c}\label{classGrid_ae53bf0b9448b14028ae225cb5f00c00c}} 
+\index{Grid@{Grid}!set\+Space\+Size@{set\+Space\+Size}}
+\index{set\+Space\+Size@{set\+Space\+Size}!Grid@{Grid}}
+\subsubsection{\texorpdfstring{set\+Space\+Size()}{setSpaceSize()}}
+{\footnotesize\ttfamily void Grid\+::set\+Space\+Size (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{space\+\_\+size }\end{DoxyParamCaption})}
+
+Set the size for the spaces on this grid
+
+space\+\_\+size the size for the spaces on this grid 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/\+I\+T\+C\+S3112-\/\+Map\+Generator/include/Grid.\+h\item 
+/home/user/\+I\+T\+C\+S3112-\/\+Map\+Generator/src/Grid.\+cpp\end{DoxyCompactItemize}

@@ -1,13 +1,16 @@
 #include "Grid.h"
 
+/**
+	Invalid Constructor
+*/
 Grid::Grid() {}
 
-/*
-	Constructor
+/**
+	Create a grid at the position relative to the window, with a grid size, and space size
 
-	@param position the upper left origin of the grid
-	@param size the count of the spaces on the grid horrizontally and vertically
-	@param space_size the size of the individual spaces on the grid
+	@param position the upper left origin of this map
+	@param size the number of spaces accross this map
+	@param space_size the size of the spaces on this map
 */
 Grid::Grid(sf::Vector2f position, sf::Vector2i size, sf::Vector2f space_size) 
 {
@@ -23,7 +26,7 @@ Grid::Grid(sf::Vector2f position, sf::Vector2i size, sf::Vector2f space_size)
 	}
 }
 
-/*
+/**
 	Call the draw function of all GridSpace(s) on this grid
 
 	@param window pointer to the window to draw to 
@@ -35,7 +38,11 @@ void Grid::draw(sf::RenderWindow & window)
 		g.draw(window);
 	}
 }
+/**
+	Call the draw function of all GridSpace(s) on this grid
 
+	@param texture pointer to the texture to draw to 
+*/
 void Grid::draw(sf::RenderTexture & texture)
 {
 	for (GridSpace g : this->grid_spaces)
@@ -44,7 +51,7 @@ void Grid::draw(sf::RenderTexture & texture)
 	}
 }
 
-/*
+/**
 	Call the draw function of a specific space on this grid
 
 	@param window pointer to the window to draw to
@@ -55,18 +62,23 @@ void Grid::drawSpace(sf::RenderWindow & window, int space_index)
 	this->grid_spaces[space_index].draw(window);
 }
 
+/**
+	Set the size of this grid. This is the number of gridspaces in this grid
+
+	@size the number of gridspaces on this grid
+*/
 void Grid::setSize(sf::Vector2i size) {
 	this->size = size;
 }
 
-/*
+/**
 	@return size the size of this grid
 */
 sf::Vector2i Grid::getSize() {
 	return this->size;
 }
 
-/*
+/**
 	Set the position of this grid relative to the window
 
 	@param position the position relative to the window
@@ -75,21 +87,21 @@ void Grid::setPosition(sf::Vector2f position) {
 	this->position = position;
 }
 
-/*
+/**
 	@return the position of this grid relative to the window
 */
 sf::Vector2f Grid::getPosition() {
 	return this->position;
 }
 
-/*
+/**
 	@return the size of this grid's spaces
 */
 sf::Vector2f Grid::getSpaceSize() {
 	return this->space_size;
 }
 
-/*
+/**
 	Set the size for the spaces on this grid
 
 	@params space_size the size for the spaces on this grid
@@ -98,7 +110,7 @@ void Grid::setSpaceSize(sf::Vector2f space_size) {
 	this->space_size = space_size;
 }
 
-/*
+/**
 	@return the total size across this grid
 */
 sf::Vector2f Grid::getRectSize() {
